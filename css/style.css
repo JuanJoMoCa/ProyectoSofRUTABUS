@@ -1,0 +1,108 @@
+/* Altura total de la página */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Contenedor principal en dos columnas */
+.container-flex {
+  display: flex;
+  height: calc(100vh - 56px); /* 56px ≈ altura navbar Bootstrap */
+}
+
+/* Mapa ocupa su columna al 100% */
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Barra lateral con scroll independiente */
+.sidebar {
+  height: 100%;
+  overflow-y: auto;
+  background: #f8f9fa;
+  padding: 15px;
+}
+
+/* Lista de rutas: estilos sutiles */
+.rutas-lista .list-group-item {
+  padding: 0.5rem 0.75rem;
+}
+
+/* Botón de ruta como enlace “bonito” */
+.ruta-btn {
+  text-decoration: none;
+  padding: 0;
+}
+
+/* Estado activo de una ruta (toggle visual) */
+.ruta-btn.active {
+  font-weight: 600;
+  color: #0d6efd; /* azul Bootstrap */
+}
+
+.Boton_loggin {
+    position: absolute;
+    top: 10px; /* Posiciona a 20px del borde superior del contenedor */
+    right: 150px; /* Posiciona a 10px del borde derecho del contenedor */
+}
+
+.Boton_op {
+    position: absolute;
+    top: 10px; /* Posiciona a 20px del borde superior del contenedor */
+    right: 20px; /* Posiciona a 10px del borde derecho del contenedor */
+}
+
+.btn_ingresar {
+  border: 0;
+  background-image: linear-gradient(
+    150deg,
+    #9500ff, /* corregido */
+    #09F,
+    #00DDFF
+  );
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  font-size: 18px;
+  padding: 4px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.btn_ingresar span {
+  background-color: #111;
+  padding: 16px 24px;
+  border-radius: 6px;
+  transition: .3s;
+}
+
+.btn_ingresar:hover span {
+  background: none;
+}
+
+.btn_ingresar:active {
+  transform: scale(0.9); /* corregido */
+}
+
+.navbar-search-input {
+  width: clamp(220px, 28vw, 360px);
+}
+
+
+/* Responsive: en móviles, sidebar arriba y mapa abajo (ya que usan col-12) */
+@media (max-width: 767.98px) {
+  .container-flex {
+    flex-direction: column;
+    height: auto;
+  }
+  #map {
+    height: 70vh;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar .container-fluid {
+    gap: .5rem;
+  }
+}
