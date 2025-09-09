@@ -1,0 +1,24 @@
+{
+  "name": "proyectosofrutabus",
+  "version": "1.0.0",
+  "description": "Este es un proyecto para la materia de Gestión de Procesos de Desarrollo de Software en el que trataremos de brindar una herramienta para el manejo de las rutas de camiones en Xalapa.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuanJoMoCa/ProyectoSofRUTABUS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuanJoMoCa/ProyectoSofRUTABUS/issues"
+  },
+  "homepage": "https://github.com/JuanJoMoCa/ProyectoSofRUTABUS#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongodb": "^6.19.0"
+  }
+}

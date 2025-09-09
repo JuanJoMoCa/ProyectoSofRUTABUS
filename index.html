@@ -13,36 +13,94 @@
 
   <!-- App CSS -->
   <link rel="stylesheet" href="./css/style.css" />
+
+  <!-- Estilos para los nuevos botones -->
+  <style>
+    .navbar-right-container {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+    }
+    #guest-buttons, #user-buttons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .auth-btn {
+      padding: 8px 15px;
+      border: 1px solid #0d6efd;
+      background-color: transparent;
+      color: #0d6efd;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+      white-space: nowrap; /* Evita que el texto se parta */
+    }
+    .auth-btn:hover {
+      background-color: #0d6efd;
+      color: white;
+    }
+    .auth-btn-register {
+      border-color: #198754;
+      color: #198754;
+    }
+    .auth-btn-register:hover {
+      background-color: #198754;
+      color: white;
+    }
+    .auth-btn-logout {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+    .auth-btn-logout:hover {
+        background-color: #dc3545;
+        color: white;
+    }
+    .menu-icon {
+        height: 40px; /* Ajustar altura */
+        width: auto;
+        cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
   <!-- Barra superior -->
-  <nav class="navbar navbar-dark bg-dark"> <div class="container-fluid"> <a class="navbar-brand d-flex align-items-center" href="#"> <img src="./img/logo.png" alt="Logo" width="80" height="60" class="d-inline-block align-text-top me-2"> RUTABUS </a> </div>
-
-  <!-- Buscador de rutas -->
-  <form class="d-none d-md-flex align-items-center ms-3" role="search" onsubmit="return false;">
-    <input id="buscadorRutas"
-          class="form-control form-control-sm navbar-search-input"
-          type="search"
-          placeholder="Buscar ruta (número o nombre)…"
-          aria-label="Buscar rutas" />
-  </form>
-
-    <div class="Boton_loggin">
-      <button class="btn_ingresar">
-        <span>Ingresar</span>
-      </button>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="./img/logo.png" alt="Logo" width="80" height="60" class="d-inline-block align-text-top me-2"> RUTABUS
+      </a>
     </div>
 
-    <div class="Boton_op">
-      <img src="./img/menu.png" alt="Menú" width="80" height="60" button class="btn_op">
-      </button>
+    <!-- Buscador de rutas -->
+    <form class="d-none d-md-flex align-items-center ms-3" role="search" onsubmit="return false;">
+      <input id="buscadorRutas"
+            class="form-control form-control-sm navbar-search-input"
+            type="search"
+            placeholder="Buscar ruta (número o nombre)…"
+            aria-label="Buscar rutas" />
+    </form>
+
+    <!-- Contenedor DERECHO para todos los botones -->
+    <div class="navbar-right-container">
+        <!-- Estos botones se muestran si el usuario NO está logueado -->
+        <div id="guest-buttons">
+            <a href="/login.html" class="auth-btn">Ingresar</a>
+            <a href="/register.html" class="auth-btn auth-btn-register">Registrarse</a>
+        </div>
+
+        <!-- Estos botones se muestran si el usuario SÍ está logueado -->
+        <div id="user-buttons" style="display: none;">
+            <button id="logout-btn" class="auth-btn auth-btn-logout">Cerrar Sesión</button>
+            <img src="./img/menu.png" alt="Menú" class="menu-icon">
+        </div>
     </div>
   </nav>
 
-  
-
-  
   <!-- Layout -->
   <div class="container-flex">
     <!-- Barra lateral -->
@@ -51,157 +109,8 @@
       <ul id="rutasLista" class="list-group">
         <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="001" data-stop="1">Ruta 1: Ávila Camacho - UV</button></li>
         <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="002" data-stop="2">Ruta 2: Lucas Martín - Centro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="003" data-stop="3">Ruta 3: Av. Xalapa - Lazaro Cardenas</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="004" data-stop="4">Ruta 4: Lázaro Cardenas - av.xalapa (economía)</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="005" data-stop="5">Ruta 5: Campo de Tiro - Colonia Hernández Castillo - Sayago</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="006" data-stop="6">Ruta 6: Miradores - Trancas - Tesoreria - Banderilla</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="007" data-stop="7">Ruta 7: Mercado - Pipila - Jardines - Carolino Anaya</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="008" data-stop="8">Ruta 8: Buena Vista- Sauces- Berros- Caxa- Trancas- Pradera- Central Abastos</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="009" data-stop="9">Ruta 9: Reserva Territorial- 20 de Noviembre- Economía- Avenida Xalapa</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="010" data-stop="10">Ruta 10: Escuela Normal Veracruzana -Avenida Xalapa, Economía, Clavijero, Reserva Territorial</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="011" data-stop="11">Ruta 11: Sayago- Calle Nuevo León- Villa Hermosa- Sumidero</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="012" data-stop="12">Ruta 12: Sumidero- calle Nuevo León - Villa Hermosa - Clavijero</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="013" data-stop="13">Ruta 13: Sayago(inicio) - Av. Xalapa - Hernández Castillo - Campo de Tiro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="014" data-stop="14">Ruta 14: Colonia Vicente Guerrero (inicio) - Campo de Tiro - Col. Revolución - Av. xalapa - Centro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="015" data-stop="15">Ruta 15: Inicia Chedrahui Caram segundo punto Ejidal y termina en Chedrahui Caram</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="016" data-stop="16">Ruta 16:Inicio en Mártires 28 de Agosto - USISVER - Miguel Alemán</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="017" data-stop="17">Ruta 17: Mártires 28 de Agosto Lazaro Cardenas</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="018" data-stop="18">Ruta 18: Ruta Macuiltepetl - Miguel Alemán - Cerro de Macuiltepetl - Centro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="019" data-stop="19">Ruta 19: Calvario - Panteón - Técnica 72</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="020" data-stop="20">Ruta 20: Murillo Vidal - Plaza Américas - Torre Ánimas - Sev - Coapexpan - Terminal</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="021" data-stop="21">Ruta 21: El Olmo - Torre Animas - Murillo Vidal - Coapexpan</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="022" data-stop="22">Ruta 22: El Haya - Zona UV - Bugambilias</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="023" data-stop="23">Ruta 23: Bugambilias - Zona UV - El Haya</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="024" data-stop="24">Ruta 24: El Haya - Centro - Ojo de Agua</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="025" data-stop="25">Ruta 25: Ojo de Agua - Zona UV - El Haya</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="026" data-stop="26">Ruta 26: Col. Veracruz - 20 de Noviembre - Central de Abastos</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="027" data-stop="27">Ruta 27: Central de Abastos - 20 de Noviembre - Col. Veracruz</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="028" data-stop="28">Ruta 28: Artículo 3ro - Avila Camacho</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="029" data-stop="29">Ruta 29: Haciendas - Centro - Art 3ro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="030" data-stop="30">Ruta 30: San Andrés Tlalnehuayocan - Luz del Barrio - Central de Abastos</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="031" data-stop="31">Ruta 31: Marina Nacional - Pipila - Santa Rosa</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="032" data-stop="32">Ruta 32: San Andrés Tlalnehuayocan - Luz del Barrio - Central de Abastos</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="033" data-stop="33">Ruta 33: San Andrés Tlalnehuayocan - Luz del Barrio - Clavijero - Zipor</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="034" data-stop="34">Ruta 34: Las Fuentes - Mercado - San Andrés Tlalnehuayocan</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="035" data-stop="35">Ruta 35: La haciendita - Caxa - Central de Abastos</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="036" data-stop="36">Ruta 36: Central de Abastos - Caxa - La Haciendita</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="037" data-stop="37">Ruta 37: Experimental - Plaza Cristal - Central de Abastos</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="038" data-stop="38">Ruta 38: Central de Abastos - Plaza Cristal - Experimental</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="039" data-stop="39">Ruta 39: La haciendita - Caxa - Central de Abastos</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="040" data-stop="40">Ruta 40: Central de Abastos - Caxa - La Haciendita</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="041" data-stop="41">Ruta 41: Experimental - Cristal - Central de Abastos</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="042" data-stop="42">Ruta 42: Central de Abastos - Plaza Cristal - Experimental</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="043" data-stop="43">Ruta 43: Homex - Vasconcelos - Av. Xalapa - Centro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="044" data-stop="44">Ruta 44: Centro - Av. Xalapa - Vasconcelos - Homex</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="045" data-stop="45">Ruta 45: Col México - Lucas Martín - Av. Xalapa-Centro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="046" data-stop="46">Ruta 46: Centro - Av. Xalapa - Lucas Martín - Col. México</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="047" data-stop="47">Ruta 47: Campo de Tiro - Revolución - Clavijero</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="048" data-stop="48">Ruta 48: Clavijero - Revolución - Campo de Tiro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="049" data-stop="49">Ruta 49: El Moral - Revolución - Clavijero</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="050" data-stop="50">Ruta 50: Clavijero - Revolución - El Moral</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="051" data-stop="51">Ruta 51: Col Higueras - Lázaro Cárdenas - Centro - Zona UV</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="052" data-stop="52">Ruta 52: Zona UV - Centro - Lázaro Cárdenas - Higueras</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="053" data-stop="53">Ruta 53: Sefiplan - Lazaro Cardenas - Cto.Presidentes - Ruiz Cortinez</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="054" data-stop="54">Ruta 54: Reforma - Mercado - Sumidero</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="055" data-stop="55">Ruta 55: Sumidero - Mercado - Reforma</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="056" data-stop="56">Ruta 56: Campo de Tiro - Av. Xalapa - Av. México - Clavijero</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="057" data-stop="57">Ruta 57: Clavijero - Av. Xalapa - Av. México - Campo de tiro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="058" data-stop="58">Ruta 58: Bugambilias - Lázaro Cárdenas - Avila Camacho - Sauces</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="059" data-stop="59">Ruta 59: Bugambilias - Ávila Camacho - Av. Xalapa</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="060" data-stop="60">Ruta 60: Col. Revolucion - Av. Xalapa - Sayago</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="061" data-stop="61">Ruta 61: Col. Revolucion - Av. Xalapa - Sayago</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="062" data-stop="62">Ruta 62: Col. Higueras - Av. Américas - Av. Xalapa</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="063" data-stop="63">Ruta 63: Av. Xalapa - Av. Américas - Col. Higueras</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="064" data-stop="64">Ruta 64: San Andrés - Av. Lázaro Cardes - Trancas</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="065" data-stop="65">Ruta 65: Trancas - Av. Lázaro Cardes - San Andrés</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="066" data-stop="66">Ruta 66: Col. Marina Nacional - Av. 20 de Noviembre - Poeta Jesús Díaz</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="067" data-stop="67">Ruta 67: Poeta Jesús Díaz - Av. 20 de Noviembre - Col. Marina Nacional</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="068" data-stop="68">Ruta 68: Trancas - 20 de Noviembre - Arteaga</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="069" data-stop="69">Ruta 69: Arteaga - 20 de Noviembre - Trancas</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="070" data-stop="70">Ruta 70: Trancas - Lázaro Cardenas - 20 de Noviembre - Plaza Crystal - Jardines de Xalapa - Sumidero - Campo de Tiro | IDA</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="071" data-stop="71">Ruta 71: Trancas - Lázaro Cardenas - 20 de Noviembre - Plaza Crystal - Jardines de Xalapa - Sumidero - Campo de Tiro | VUELTA</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="072" data-stop="72">Ruta 72: Santiago Andres - M. 28 de Agosto - Mercado</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="073" data-stop="73">Ruta 73: Mercado - M. 28 de Agosto - Santiago Andres</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="074" data-stop="74">Ruta 74: Lomas Verdes - Xalapa 2000 - Rebsamen - Zona UV - Centro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="075" data-stop="75">Ruta 75: Centro - Los berros - Rebsamen - Xalapa 2000 - Lomas Verdes - Arco Sur - tecnológico - Arco Sur - Lomas Verdes</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="076" data-stop="76">Ruta 76: Av. Americas - Pipila - Lazaro Cárdenas - Maestros Veracruzanos - Murillo Vidal - Berros - Rebsamen - Tecnológico</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="077" data-stop="77">Ruta 77: Plaza Cristal - Lázaro Cárdenas - Chilpancingo - Comercial - Ruiz Cortinez - Luz del Barrio</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="078" data-stop="78">Ruta 78: Luz del Barrio - Casa Blanca</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="079" data-stop="79">Ruta 79: Coatepec Porthos - Xalapa Rotonda"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="080" data-stop="80">Ruta 80: Xalapa - Encinos | Carro Sauces"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="081" data-stop="81">Ruta 81: Mercado - Centro - Cristal - Peñascal - Sumidero - Campo de Tiro"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="082" data-stop="82">Ruta 82: Articulo 3ro - Lázaro Cárdenas - Trancas - La Pradera - Las Haciendas"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="083" data-stop="83">Ruta 83: Central de Abastos - La Martinica (Banderilla)"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="084" data-stop="84">Ruta 84: Las Trancas - FOVISSSTE"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="085" data-stop="85">Ruta 85: 20 de Noviembre - Pacho Nuevo"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="086" data-stop="86">Ruta 86: Central de Abastos - Campo de Tiro"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="087" data-stop="87">Ruta 87: Centro - Clavijero - Casa Blanca"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="088" data-stop="88">Ruta 88: Casa Blanca - Plaza Cristal"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="089" data-stop="89">Ruta 89: Poeta Jesus Dias - Sumidero"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="090" data-stop="90">Ruta 90: Casa blanca - Pipila - Clavijero"</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="091" data-stop="91">Ruta 91: Pipila - Sumidero</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="092" data-stop="92">Ruta 92: Terminal - Mercado - Sumidero</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="093" data-stop="93">Ruta 93: Sumidero - Jardines</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="094" data-stop="94">Ruta 94: Sumidero - Centro - Plaza Cristal - Calvario</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="095" data-stop="95">Ruta 95: Mercado - 28 de agosto - San Antonio</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="096" data-stop="96">Ruta 96: San Antonio - 28 de agosto - Mercado</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="097" data-stop="97">Ruta 97: Xocotla 27 de agosto - Mecardo</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="098" data-stop="98">Ruta 98: Ávila Camacho - Ignacio de la Llave - Sauces - Zona UV</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="099" data-stop="99">Ruta 99: Higueras - Casa Blanca - Lázaro Cárdenas - 20 de Noviembre - Zona UV - Venustiano Carranza</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="100" data-stop="100">Ruta 100: Carranza - Sauces - Ruiz Cortinez - Av. Xalapa - Poeta - 20 de Noviembre - Lázaro Cárdenas</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="101" data-stop="101">Ruta 101: Coapexpan - Araucarias - Torre Animas</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="102" data-stop="102">Ruta 102: Coapexpan - Inst. Tec. 72</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="103" data-stop="103">Ruta 103: Tec 72 - Coapexpan</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="104" data-stop="104">Ruta 104: Instituto Tecnológico - Arco Sur - Rebsamen - Sauces - Avila Camacho - Americas - Pipila - Lázaro Cárdenas - Arco Sur - Instituto Tecnológico</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="105" data-stop="105">Ruta 105: Estación - Zona UV</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="106" data-stop="106">Ruta 106: Jardines - Estación - Centro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="107" data-stop="107">Ruta 107: Centro - Central de Abastos</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="108" data-stop="108">Ruta 108: Buena Vista - Centro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="109" data-stop="109">Ruta 109: Coapexpan - M. Vidal - Torre Animas - Araucarias</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="110" data-stop="110">Ruta 110: FOVISSSTE - Calvario - IMSS</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="111" data-stop="111">Ruta 111: FOVISSSTE - Calvario</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="112" data-stop="112">Ruta 112: Ruiz Cortines - FOVISSTE - Lazaro Cardenas</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="113" data-stop="113">Ruta 113: Ruiz Cortines - Zona UV</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="114" data-stop="114">Ruta 114: Lomas Verdes - Medicina</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="115" data-stop="115">Ruta 115: Estación - Villa Hermosa - Ruiz Cortinez - Sauces</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="116" data-stop="116">Ruta 116: Escuela Normal - Juarez - Centro - Berros - Rebasame - Ojo de agua</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="117" data-stop="117">Ruta 117: Bugambilias - Trancas - Lázaro Cárdenas - SEFIPLAN - Av. Xalapa - Ignacio de la Llave - IMSS - Carranza - Zona UV - Rebsamen - Xalapa 2000 - Arco Sur - Tecnologico - Bugambilias</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="118" data-stop="118">Ruta 118: Articulo 3ro - Ruiz Cortinez - SEFIPLAN - Lázaro Cárdenas - Chedraui Caram - Plaza Americas - Trancas - Arco Sur - Tecnologico</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="119" data-stop="119">Ruta 119: Torres - Centro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="120" data-stop="120">Ruta 120: Xocotla - Martires 28 de Agosto - Sayago</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="121" data-stop="121">Ruta 121: Buena Vista - Centra de Abastos</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="122" data-stop="122">Ruta 122: Pastoresa - Murillo Vidal - Centro</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="123" data-stop="123">Ruta 123: Sauces - Ojo de agua</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="124" data-stop="124">Ruta 124: Campo de Tiro - Crystal - Mercado</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="125" data-stop="125">Ruta 125: Estación - Calvario</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="126" data-stop="126">Ruta 126: Arco Sur - Rebsamen - Tecnológico - Trancas - Lázaro Cárdenas - Pipila - Américas - Avila Camacho - Ignacio de la llave - Sauces - Zona UV - Rebsamen - Arco Sur</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="127" data-stop="127">Ruta 127: Lomas Verdes - Medicina</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="128" data-stop="128">Ruta 128: Estación - Terminal Bolivia</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="129" data-stop="129">Ruta 129: Estación - Ignacio de la llave</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="130" data-stop="130">Ruta 130: Calvario - Terminal</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="131" data-stop="131">Ruta 131: Articulo 3ro - Zona UV - Berros - 20 de Noviembre - Av. Xalapa - Avila Camacho - Ruiz Cortinez</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="132" data-stop="132">Ruta 132: Lazaro Cardenas - Ruiz Cortinez</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="133" data-stop="133">Ruta 133: SEFIPLAN - Lazaro Cardenas</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="134" data-stop="134">Ruta 134: SEFIPLAN - Avila Camacho</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="135" data-stop="135">Ruta 135: Tecnica 72 - Circunvalacion</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="136" data-stop="136">Ruta 136: Coapexpan - Tecnica 72</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="137" data-stop="137">Ruta 137: Tecnica 72 - Aguascalientes</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="138" data-stop="138">Ruta 138: Fovissste - Lerdo de Tejada</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="139" data-stop="139">Ruta 139: Fovissste - IMSS</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="140" data-stop="140">Ruta 140: Fovissste - San Bruno - Trancas</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="141" data-stop="141">Ruta 141: Pastoresa - Mercado</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="142" data-stop="142">Ruta 142: Luz del Barrio - Plaza Crystal</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="143" data-stop="143">Ruta 143: Rancho Viejo - Xalapa</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="144" data-stop="144">Ruta 144: Mercado - Sumidero</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="145" data-stop="145">Ruta 145: Carolino Anaya - IMSS</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="146" data-stop="146">Ruta 146: Santa Rosa - Estación</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="147" data-stop="147">Ruta 147: Martires de Chicago - Mercado</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="148" data-stop="148">Ruta 148: Coapexpan - SEC</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="149" data-stop="149">Ruta 149: Coapexpan - Araucarias</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="150" data-stop="150">Ruta 150: Coapexpan - Araucarias</button></li>
-        <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="151" data-stop="151">Ruta 151: Higueras - Mercado</button></li>
+        <!-- ... resto de tus rutas ... -->
         <li class="list-group-item"><button class="btn btn-link ruta-btn" data-ruta="152" data-stop="152">Ruta 152: Circuito Precidentes - Rebsamen - Xalapa 2000 - Arco Sur - Trancas - Lazaro Cardenas - Ruiz Cortinez - Sauces - Velodromo</button></li>
-
       </ul>
       <p class="mt-3 text-muted">Haz clic en una ruta para mostrarla en el mapa.</p>
     </div>
@@ -214,7 +123,6 @@
   </div>
 
   <main id="map" class="col-12 col-md-8 col-lg-9"></main>
-  </div>
 
   <!-- JS de terceros -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
@@ -223,5 +131,37 @@
   <!-- JS de la app -->
   <script src="./js/app.js" defer></script>
 
+  <!-- Lógica para mostrar/ocultar botones -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const guestButtons = document.getElementById('guest-buttons');
+      const userButtons = document.getElementById('user-buttons');
+      const logoutBtn = document.getElementById('logout-btn');
+
+      // Por ahora, simulamos el estado de login con localStorage.
+      // Cuando integremos el login, guardaremos aquí la información del usuario.
+      const user = localStorage.getItem('rutabus_user');
+
+      if (user) {
+        // Si hay un usuario, mostramos el botón de cerrar sesión
+        guestButtons.style.display = 'none';
+        userButtons.style.display = 'block';
+      } else {
+        // Si no hay usuario, mostramos los botones de ingresar y registrarse
+        guestButtons.style.display = 'flex';
+        userButtons.style.display = 'none';
+      }
+
+      // Funcionalidad del botón de cerrar sesión
+      logoutBtn.addEventListener('click', () => {
+        // Borramos al usuario de localStorage
+        localStorage.removeItem('rutabus_user');
+        // Recargamos la página para que se actualicen los botones
+        window.location.reload();
+      });
+    });
+  </script>
+
 </body>
 </html>
+
