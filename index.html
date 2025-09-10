@@ -260,6 +260,118 @@
     });
   </script>
 
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ... (Tu lógica de login y logout existente)
+    const guestButtons = document.getElementById('guest-buttons');
+    const userButtons = document.getElementById('user-buttons');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    const user = localStorage.getItem('rutabus_user');
+
+    if (user) {
+      guestButtons.style.display = 'none';
+      userButtons.style.display = 'block';
+    } else {
+      guestButtons.style.display = 'flex';
+      userButtons.style.display = 'none';
+    }
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('rutabus_user');
+      window.location.reload();
+    });
+
+    // --- Código NUEVO y CORREGIDO para contraer/expandir el menú ---
+    const sidebar = document.querySelector('.sidebar');
+    const mapContainer = document.querySelector('#map'); // Usa el id 'map' directamente
+    const containerFlex = document.querySelector('.container-flex');
+
+    const toggleButton = document.createElement('button');
+    toggleButton.textContent = '◀️';
+    toggleButton.classList.add('btn', 'btn-dark', 'toggle-btn');
+    toggleButton.setAttribute('title', 'Contraer/Expandir Rutas');
+
+
+    // Añadir el botón FUERA de la barra lateral pero dentro del container-flex
+    containerFlex.prepend(toggleButton);
+
+
+    toggleButton.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+
+      // Cambiar el ícono y la posición del botón
+      if (sidebar.classList.contains('collapsed')) {
+        toggleButton.textContent = '▶️';
+        toggleButton.style.left = '0'; // Mueve el botón a la izquierda cuando la sidebar está colapsada
+      } else {
+        toggleButton.textContent = '◀️';
+        toggleButton.style.left = '300px'; // Mueve el botón a la posición inicial cuando la sidebar está expandida
+      }
+    });
+  });
+</script>
+
+<style>
+  /* --- Estilos CORREGIDOS para el comportamiento del menú --- */
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Evita scrolls inesperados */
+  }
+
+  .navbar {
+    height: 80px; /* Asegura que la barra de navegación tenga una altura fija */
+  }
+
+  .container-flex {
+    display: flex; /* **¡Clave!** Usa flexbox para distribuir el espacio */
+    position: relative; /* Necesario para posicionar el botón toggle */
+    height: calc(100vh - 80px); /* Ajusta a la altura restante de la pantalla */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+  }
+
+  .sidebar {
+    transition: width 0.3s ease-in-out, padding 0.3s ease-in-out; /* Animación más suave */
+    width: 300px; /* **Cambio:** Ancho inicial fijo para mejor control */
+    min-width: 300px; /* **Cambio:** Ancho mínimo */
+    overflow-y: auto; /* Permite scroll si las rutas son muchas */
+    background-color: #f8f9fa; /* Color de fondo para la barra lateral */
+    border-right: 1px solid #dee2e6; /* Borde para separarla del mapa */
+    padding: 15px; /* Relleno interno */
+    box-sizing: border-box; /* Incluye padding y border en el ancho */
+  }
+
+  .sidebar.collapsed {
+    width: 0 !important; /* Fuerza el ancho a 0 */
+    min-width: 0 !important; /* Fuerza el ancho mínimo a 0 */
+    padding: 0 !important; /* Quita el padding */
+    overflow: hidden; /* Oculta el contenido desbordado */
+  }
+
+  #map {
+    flex-grow: 1; /* **¡Clave!** Permite que el mapa crezca para ocupar todo el espacio restante */
+    transition: all 0.3s ease-in-out;
+  }
+
+  .toggle-btn {
+    position: absolute;
+    top: 50%;
+    left: 300px; /* **Cambio:** Posiciona el botón al final de la sidebar */
+    transform: translateY(-50%); /* Centra verticalmente */
+    z-index: 1000; /* Asegura que el botón esté por encima de todo */
+    border-radius: 0 5px 5px 0; /* Bordes redondeados solo a la derecha */
+    padding: 10px 5px;
+    height: 60px; /* Altura para que sea más fácil de clicar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease-in-out; /* Animación para el movimiento del botón */
+  }
+</style>
+
 </body>
 </html>
 
