@@ -89,6 +89,55 @@ html, body {
   width: clamp(220px, 28vw, 360px);
 }
 
+.navbar-right-container {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+    }
+    #guest-buttons, #user-buttons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .auth-btn {
+      padding: 8px 15px;
+      border: 1px solid #0d6efd;
+      background-color: transparent;
+      color: #0d6efd;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+      white-space: nowrap; /* Evita que el texto se parta */
+    }
+    .auth-btn:hover {
+      background-color: #0d6efd;
+      color: white;
+    }
+    .auth-btn-register {
+      border-color: #198754;
+      color: #198754;
+    }
+    .auth-btn-register:hover {
+      background-color: #198754;
+      color: white;
+    }
+    .auth-btn-logout {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+    .auth-btn-logout:hover {
+        background-color: #dc3545;
+        color: white;
+    }
+    .menu-icon {
+        height: 40px; /* Ajustar altura */
+        width: auto;
+        cursor: pointer;
+    }
+
 
 /* Responsive: en móviles, sidebar arriba y mapa abajo (ya que usan col-12) */
 @media (max-width: 767.98px) {
